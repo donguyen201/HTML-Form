@@ -1,0 +1,108 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Form Đăng Ký</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+    .form-box {
+      width: 300px;
+      padding: 15px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    label {
+      display: block;
+      margin-top: 10px;
+    }
+    input[type="text"], input[type="email"] {
+      width: 100%;
+      padding: 4px;
+      margin-top: 4px;
+    }
+    .gender-group {
+      margin-top: 6px;
+    }
+    .gender-group label {
+      display: inline-block;
+      margin-right: 10px;
+      font-weight: normal;
+    }
+    input[type="submit"] {
+      margin-top: 15px;
+      padding: 6px 12px;
+    }
+  </style>
+</head>
+<body>
+  <div id="form-container"></div>
+
+  <script>
+    const container = document.getElementById("form-container");
+
+    const form = document.createElement("form");
+    form.className = "form-box";
+    form.method = "POST";
+    form.action = "http://demo.codegym.vn/6/registration_form/register.php";
+
+    // Họ và tên
+    const nameLabel = document.createElement("label");
+    nameLabel.textContent = "Họ và tên:";
+    const nameInput = document.createElement("input");
+    nameInput.type = "text";
+    nameInput.name = "name";
+    form.appendChild(nameLabel);
+    form.appendChild(nameInput);
+
+    // Email
+    const emailLabel = document.createElement("label");
+    emailLabel.textContent = "Email:";
+    const emailInput = document.createElement("input");
+    emailInput.type = "email";
+    emailInput.name = "email";
+    form.appendChild(emailLabel);
+    form.appendChild(emailInput);
+
+    // SĐT
+    const phoneLabel = document.createElement("label");
+    phoneLabel.textContent = "Số điện thoại:";
+    const phoneInput = document.createElement("input");
+    phoneInput.type = "text";
+    phoneInput.name = "phone";
+    form.appendChild(phoneLabel);
+    form.appendChild(phoneInput);
+
+    // Giới tính
+    const genderLabel = document.createElement("label");
+    genderLabel.textContent = "Giới tính:";
+    const genderDiv = document.createElement("div");
+    genderDiv.className = "gender-group";
+
+    [["Nam", "male", true], ["Nữ", "female", false]].forEach(([text, val, checked]) => {
+      const label = document.createElement("label");
+      const radio = document.createElement("input");
+      radio.type = "radio";
+      radio.name = "gender";
+      radio.value = val;
+      if (checked) radio.checked = true;
+      label.appendChild(radio);
+      label.append(" " + text);
+      genderDiv.appendChild(label);
+    });
+
+    form.appendChild(genderLabel);
+    form.appendChild(genderDiv);
+
+    // Nút submit
+    const submitBtn = document.createElement("input");
+    submitBtn.type = "submit";
+    submitBtn.value = "Đăng ký";
+    form.appendChild(submitBtn);
+
+    container.appendChild(form);
+  </script>
+</body>
+</html>
