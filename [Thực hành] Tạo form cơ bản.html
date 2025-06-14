@@ -1,0 +1,134 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Order Form</title>
+  <style>
+    body {
+      font-family: "Lucida Grande", "Lucida Sans Unicode", Tahoma, sans-serif;
+    }
+    .form-box {
+      width: 280px;
+      padding: 15px;
+      border: 2px solid #ccc;
+      border-radius: 5px;
+      box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
+    }
+    label {
+      font-weight: bold;
+      display: block;
+      margin-top: 10px;
+    }
+    .inline-group {
+      display: flex;
+      gap: 5px;
+      margin: 4px 0;
+    }
+    .inline-group input {
+      flex: 1;
+    }
+    input[type="text"], input[type="email"] {
+      width: 100%;
+      margin: 4px 0;
+    }
+    input[type="submit"] {
+      margin-top: 10px;
+    }
+    .radio-group {
+      margin-left: 10px;
+    }
+    .radio-group label {
+      font-weight: normal;
+      display: block;
+      margin-top: 2px;
+    }
+  </style>
+</head>
+<body>
+  <div id="container"></div>
+
+  <script>
+    const container = document.getElementById("container");
+
+    const form = document.createElement("form");
+    form.className = "form-box";
+
+    const title = document.createElement("h3");
+    title.textContent = "Order Form";
+    form.appendChild(title);
+
+    const label1 = document.createElement("label");
+    label1.textContent = "What would you like to buy?";
+    form.appendChild(label1);
+
+    const select = document.createElement("select");
+    ["A", "B", "C"].forEach(opt => {
+      const option = new Option(opt, opt);
+      select.appendChild(option);
+    });
+    form.appendChild(select);
+
+    const label2 = document.createElement("label");
+    label2.textContent = "How many would you like to order?";
+    form.appendChild(label2);
+
+    const radioDiv = document.createElement("div");
+    radioDiv.className = "radio-group";
+    [["1 – $10", "1"], ["2 – $20", "2"], ["3 – $25", "3"]].forEach(([text, val]) => {
+      const radioLabel = document.createElement("label");
+      const radio = document.createElement("input");
+      radio.type = "radio";
+      radio.name = "quantity";
+      radio.value = val;
+      radioLabel.appendChild(radio);
+      radioLabel.append(` ${text}`);
+      radioDiv.appendChild(radioLabel);
+    });
+    form.appendChild(radioDiv);
+
+    const nameLabel = document.createElement("label");
+    nameLabel.innerHTML = `Name <span style="color: red">*</span>`;
+    form.appendChild(nameLabel);
+
+    const nameGroup = document.createElement("div");
+    nameGroup.className = "inline-group";
+    ["FirstName", "LastName"].forEach(ph => {
+      const input = document.createElement("input");
+      input.type = "text";
+      input.placeholder = ph;
+      nameGroup.appendChild(input);
+    });
+    form.appendChild(nameGroup);
+
+    const emailLabel = document.createElement("label");
+    emailLabel.textContent = "Email";
+    form.appendChild(emailLabel);
+
+    const email = document.createElement("input");
+    email.type = "email";
+    form.appendChild(email);
+
+    const phoneLabel = document.createElement("label");
+    phoneLabel.textContent = "Phone Number";
+    form.appendChild(phoneLabel);
+
+    const phoneGroup = document.createElement("div");
+    phoneGroup.className = "inline-group";
+    for (let i = 0; i < 3; i++) {
+      const input = document.createElement("input");
+      input.type = "text";
+      input.maxLength = 4;
+      phoneGroup.appendChild(input);
+    }
+    form.appendChild(phoneGroup);
+
+    const submit = document.createElement("input");
+    submit.type = "submit";
+    submit.value = "Submit";
+    form.appendChild(submit);
+
+    container.appendChild(form);
+  </script>
+</body>
+</html>
