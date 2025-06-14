@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Google Search Form (JS)</title>
+</head>
+<body>
+  <div id="container"></div>
+
+  <script>
+    // Tạo form
+    const form = document.createElement("form");
+    form.action = "https://www.google.com/search";
+    form.method = "GET";
+
+    // Tạo input text
+    const input = document.createElement("input");
+    input.type = "text";
+    input.name = "q"; // Google yêu cầu name="q"
+
+    // Tạo nút submit
+    const submit = document.createElement("input");
+    submit.type = "submit";
+    submit.value = "Tìm kiếm";
+
+    // Thêm vào form
+    form.appendChild(input);
+    form.appendChild(submit);
+
+    // Gắn form vào trang
+    document.getElementById("container").appendChild(form);
+  </script>
+</body>
+</html>
